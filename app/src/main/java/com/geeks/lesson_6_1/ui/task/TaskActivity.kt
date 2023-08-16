@@ -34,8 +34,8 @@ class TaskActivity : AppCompatActivity() {
             )
             viewModel.setTask(data)
 
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
