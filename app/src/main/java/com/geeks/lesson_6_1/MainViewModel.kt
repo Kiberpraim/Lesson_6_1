@@ -8,17 +8,28 @@ import com.geeks.lesson_6_1.model.Task
 
 class MainViewModel : ViewModel() {
 
-    private var arrayList = ArrayList<Task>()
-    private var _list = MutableLiveData<ArrayList<Task>>()
-    val list: LiveData<ArrayList<Task>> = _list
+    private var tasks = mutableListOf<Task>()
+    private var _list = MutableLiveData<MutableList<Task>>()
+    val list: LiveData<MutableList<Task>> = _list
 
     fun addTask(task: Task) {
-        arrayList.add(task)
-        _list.value = arrayList
+        tasks.add(task)
+        _list.value = tasks
         Log.e("kiber", list.value.toString())
     }
 
     fun deleteTask(task: Task) {
-        arrayList.removeIf { it.title == task.title }
+        tasks.remove(task)
+        _list.value = tasks
+    }
+
+    fun checkedTask(task: Task, isChecked: Boolean){
+        tasks.replaceAll {
+            if (it == task) {
+                it.checkBox = isChecked
+            }
+            Log.e("kiber", list.value.toString())
+            it
+        }
     }
 }
